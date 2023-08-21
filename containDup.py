@@ -3,19 +3,35 @@ from typing import List
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        numSet = set() 
+        # numSet = set() 
 
-        for num in nums:
-            if num in numSet:
+        # for num in nums:
+        #     if num in numSet:
+        #         return True
+        #     else:
+        #         numSet.add(num)
+
+        # return False
+
+        #[1, 2, 3, 1]
+        #[1, 1, 2, 3]
+
+        sortedArr = sorted(nums)
+        for i in range(len(sortedArr) - 1):
+            if sortedArr[i + 1] == sortedArr[i]:
                 return True
             else:
-                numSet.add(num)
+                continue
+
+
+
+
 
         return False
 
 
 newSolution = Solution()
 
-print(newSolution.containsDuplicate([1,2,3,3,4]))
+print(newSolution.containsDuplicate([1,2,3,1]))
 
     
