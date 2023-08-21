@@ -8,8 +8,7 @@ class Solution:
         # for num in nums:
         #     if num in numSet:
         #         return True
-        #     else:
-        #         numSet.add(num)
+        #     numSet.add(num)
 
         # return False
 
@@ -22,10 +21,6 @@ class Solution:
                 return True
             else:
                 continue
-
-
-
-
 
         return False
 
