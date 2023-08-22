@@ -15,8 +15,8 @@ from collections import defaultdict
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         # # compare the lengths of both strings
-        # if len(s) != len(t):
-        #     return False
+        if len(s) != len(t):
+            return False
         
         # # sort both strings
         # string1 = ''.join(sorted(s))
@@ -32,10 +32,10 @@ class Solution:
         newMap2 = {}
         # newMap = defaultdict(int)
 
-        for i in range(len(s) - 1):
+        for i in range(len(s)):
             # newMap[char] += 1
-            newMap[s[i]] = (newMap.get(s[i]) or 0) + 1
-            newMap2[t[i]] = (newMap2.get(t[i]) or 0) + 1
+            newMap[s[i]] = newMap.get(s[i], 0) + 1
+            newMap2[t[i]] = newMap2.get(t[i], 0) + 1
 
 
         # you can compare two maps if they are identical
