@@ -8,6 +8,8 @@
 # Output: [0,1]
 # Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
+# [2,7,11,15,2,3,2,4,5,7,11,23,321,32,21,14,24,53,12]
+
 # Example 2:
 # Input: nums = [3,2,4], target = 6
 # Output: [1,2]
@@ -20,19 +22,35 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # # for i in range(len(nums)):
-        # #     for j in range(len(nums)):
-        # #         complement = target - nums[i]
-        # #         if nums[j] == complement:
-        # #             return [i, j]
-        # # return
-        # map1 = {}
-        # #[2, 0]
-        # #[7, 1]
+        # Solution 1: Intuition looping twice
+        # for i in range(len(nums)):
+        #     for j in range(len(nums)):
+        #         complement = target - nums[i]
+        #         if nums[j] == complement and i != j:
+        #             return [i, j]
+        # return
+    
+        # Solution 1.5: Using i + 1
+        # for i in range(len(nums)):
+        #     for j in range(i + 1, len(nums)):
+        #         complement = target - nums[i]
+        #         if nums[j] == complement:
+        #             return [i, j]
 
-        # # for i, n in enumerate(nums):
-        # #     map1[n] = i
+        # Solution 2.0 filling up map first:
+        # map1 = {}
+        # for i, n in enumerate(nums):
+        #     map1[n] = i
         
+        # for i, n in enumerate(nums):
+        #     complement = target - n
+        #     if complement in map1:
+        #         return [map1[complement], i]
+        #     map1[n] = i
+        # return
+
+        # Solution 2 (Optimal): Filling up map as you go
+        # map1 = {}
         # for i, n in enumerate(nums):
         #     complement = target - n
         #     if complement in map1:
@@ -40,31 +58,11 @@ class Solution:
         #     map1[n] = i
             
         # return
-        
-        map1 = {}
-
-        #[2,7,11,15] target 9
-        #[0,1,2,6,7,11,15] target 9
 
         #To-do: implement using two pointer
-        sortedArr = sorted(nums)
-        
-        for i, n in enumerate(nums):
-            complement = target - n
-            if complement in map1:
-                return [map1[complement], i]
-            map1[n] = i
-            
-        return
-
-
-        
-
-    
-
-    
-    
-
+        # [2,7,11,15] target 9
+        # [0,1,2,6,7,11,15] target 9
+        # sortedArr = sorted(nums)
 
 newSolution = Solution()
 print(newSolution.twoSum([2,7,11,15], 9))

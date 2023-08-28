@@ -13,11 +13,8 @@
 from collections import defaultdict
 
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        # # compare the lengths of both strings
-        if len(s) != len(t):
-            return False
-        
+    def isAnagram(self, s: str, t: str) -> bool: 
+        # Solution 1: Sorting both strings and checking if equal.
         # # sort both strings
         # string1 = ''.join(sorted(s))
         # string2 = ''.join(sorted(t))
@@ -27,13 +24,22 @@ class Solution:
         
         # return False
     
-        # set up hashMap
+        # Solution 2 (Multiple variants):
+        # compare the lengths of both strings
+        if len(s) != len(t):
+            return False
+        # set up hashMap or use defaultdict for easier syntax (no .get())
         newMap = {}
         newMap2 = {}
         # newMap = defaultdict(int)
+        # newMap2 = defaultdict(int)
+        # for char in s:
+        #     newMap[char] += 1
+        # for char in t:
+        #     newMap2[char] += 1
+
 
         for i in range(len(s)):
-            # newMap[char] += 1
             newMap[s[i]] = newMap.get(s[i], 0) + 1
             newMap2[t[i]] = newMap2.get(t[i], 0) + 1
 

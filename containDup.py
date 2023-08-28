@@ -3,6 +3,18 @@ from typing import List
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
+        # Solution 1: intuition to sort first and check number right after for dupes
+        # sortedArr = sorted(nums)
+        # for i in range(len(sortedArr) - 1):
+        #     if sortedArr[i + 1] == sortedArr[i]:
+        #         return True
+        #     else:
+        #         continue
+
+        # return False
+
+
+        # Solution 2 (Optimal):
         # numSet = set() 
 
         # for num in nums:
@@ -15,13 +27,10 @@ class Solution:
         #[1, 2, 3, 1]
         #[1, 1, 2, 3]
 
-        sortedArr = sorted(nums)
-        for i in range(len(sortedArr) - 1):
-            if sortedArr[i + 1] == sortedArr[i]:
-                return True
-            else:
-                continue
-
+        
+        numSet = set(nums)
+        if len(numSet) != len(nums):
+            return True
         return False
 
 
