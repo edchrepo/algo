@@ -16,34 +16,33 @@ from typing import List
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Solution 1 (Optimal) O(n):
+        # count = {}
+        # freq = [[] for i in range(len(nums) + 1)]
+
+        # for n in nums:
+        #     count[n] = 1 + count.get(n, 0)
+        # for n, c in count.items():
+        #     freq[c].append(n)
+        
+        # print(freq)
+
+        # res = []
+        # for i in range(len(freq) - 1, 0, -1):
+        #     for n in freq[i]:
+        #         res.append(n)
+        #         if len(res) == k:
+        #             return res
+
+        # Solution 2: O(nlogn)
         count = {}
-        freq = [[] for i in range(len(nums) + 1)]
 
         for n in nums:
-            count[n] = 1 + count.get(n, 0)
-        for n, c in count.items():
-            freq[c].append(n)
-        
-        print(freq)
+            count[n] = count.get(n, 0) + 1
 
-        res = []
-        for i in range(len(freq) - 1, 0, -1):
-            for n in freq[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-
-        # O(n)
-
-    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-    #     count = {}
-
-    #     for n in nums:
-    #         count[n] = count.get(n, 0) + 1
-
-    #     # Sort items in 'count' by their frequency in descending order and get the top k numbers
-    #     sorted_items = sorted(count.items(), key=lambda item: item[1], reverse=True)
-    #     return [item[0] for item in sorted_items[:k]]
+        # Sort items in 'count' by their frequency in descending order and get the top k numbers
+        sorted_items = sorted(count.items(), key=lambda item: item[1], reverse=True)
+        return [item[0] for item in sorted_items[:k]]
 
 newSolution = Solution()
 print(newSolution.topKFrequent([1,1,1,2,2,3,3,3,3,2,5,6,7,1,3,1,2,8,9], 3))
