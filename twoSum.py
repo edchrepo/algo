@@ -49,20 +49,37 @@ class Solution:
         #     map1[n] = i
         # return
 
-        # Solution 2 (Optimal): Filling up map as you go
+        # Solution 2 (Optimal): Filling up map as you go. This works because even if the first iteration 
+        # will never return, it works because you are looking for two numbers. You'll eventually see the
+        # pair that is the answer.
         # map1 = {}
         # for i, n in enumerate(nums):
         #     complement = target - n
         #     if complement in map1:
         #         return [map1[complement], i]
         #     map1[n] = i
-            
         # return
 
-        #To-do: implement using two pointer
+        # Solution with Two Pointer:
         # [2,7,11,15] target 9
         # [0,1,2,6,7,11,15] target 9
-        # sortedArr = sorted(nums)
+        # Create a list of pairs (number, original_index)
+        indexed_nums = [(num, i) for i, num in enumerate(nums)]
+        
+        # Sort the list based on the numbers
+        indexed_nums.sort(key=lambda x: x[0])
+        
+        left, right = 0, len(nums) - 1
+        while left < right:
+            current_sum = indexed_nums[left][0] + indexed_nums[right][0]
+            if current_sum == target:
+                return [indexed_nums[left][1], indexed_nums[right][1]]
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+        return []  # No solution found
 
 newSolution = Solution()
 print(newSolution.twoSum([2,7,11,15], 9))
