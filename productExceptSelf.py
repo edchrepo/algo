@@ -28,21 +28,21 @@ class Solution:
         # return res
     
         # My Solution: O(n) Time O(n) Space
-        # answer = [1] * len(nums)
+        answer = [1] * len(nums)
         
-        # # Calculate products of all elements to the left of i
-        # leftProduct = 1
-        # for i in range(len(nums)):
-        #     answer[i] = leftProduct
-        #     leftProduct *= nums[i]
+        # Calculate products of all elements to the left of i
+        leftProduct = 1
+        for i in range(len(nums)):
+            answer[i] = leftProduct
+            leftProduct *= nums[i]
         
-        # # Calculate products of all elements to the right of i
-        # rightProduct = 1
-        # for i in range(len(nums) - 1, -1, -1):
-        #     answer[i] *= rightProduct
-        #     rightProduct *= nums[i]
+        # Calculate products of all elements to the right of i
+        rightProduct = 1
+        for i in range(len(nums) - 1, -1, -1):
+            answer[i] *= rightProduct
+            rightProduct *= nums[i]
         
-        # return answer
+        return answer
     
         # Solution (just the intuition, not optimal):
         # [1, 2, 3, 4]
@@ -50,24 +50,24 @@ class Solution:
         # [24, 12, 4, 1]
         
         # [1 * 24, 1 * 12, 2 * 4 , 6 * 1]
-        ans = [1] * len(nums) 
-        leftProd = [1] * len(nums)
-        rightProd = [1] * len(nums)
+        # ans = [1] * len(nums) 
+        # leftProd = [1] * len(nums)
+        # rightProd = [1] * len(nums)
 
-        leftProduct = 1
-        for i in range(len(nums)):
-            leftProd[i] = leftProduct
-            leftProduct *= nums[i]
+        # leftProduct = 1
+        # for i in range(len(nums)):
+        #     leftProd[i] = leftProduct
+        #     leftProduct *= nums[i]
 
-        rightProduct = 1
-        for i in range(len(nums) - 1, -1, -1):
-            rightProd[i] = rightProduct
-            rightProduct *= nums[i]
+        # rightProduct = 1
+        # for i in range(len(nums) - 1, -1, -1):
+        #     rightProd[i] = rightProduct
+        #     rightProduct *= nums[i]
 
-        for i in range(len(nums)):
-            ans[i] = leftProd[i] * rightProd[i]
+        # for i in range(len(nums)):
+        #     ans[i] = leftProd[i] * rightProd[i]
 
-        return ans
+        # return ans
     
 
 newSolution = Solution()
