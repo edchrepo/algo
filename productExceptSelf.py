@@ -28,22 +28,47 @@ class Solution:
         # return res
     
         # My Solution: O(n) Time O(n) Space
-        answer = [1] * len(nums)
+        # answer = [1] * len(nums)
         
-        # Calculate products of all elements to the left of i
+        # # Calculate products of all elements to the left of i
+        # leftProduct = 1
+        # for i in range(len(nums)):
+        #     answer[i] = leftProduct
+        #     leftProduct *= nums[i]
+        
+        # # Calculate products of all elements to the right of i
+        # rightProduct = 1
+        # for i in range(len(nums) - 1, -1, -1):
+        #     answer[i] *= rightProduct
+        #     rightProduct *= nums[i]
+        
+        # return answer
+    
+        # Solution (just the intuition, not optimal):
+        # [1, 2, 3, 4]
+        # [1, 1, 2, 6]
+        # [24, 12, 4, 1]
+        
+        # [1 * 24, 1 * 12, 2 * 4 , 6 * 1]
+        ans = [1] * len(nums) 
+        leftProd = [1] * len(nums)
+        rightProd = [1] * len(nums)
+
         leftProduct = 1
         for i in range(len(nums)):
-            answer[i] = leftProduct
+            leftProd[i] = leftProduct
             leftProduct *= nums[i]
-        
-        # Calculate products of all elements to the right of i
+
         rightProduct = 1
         for i in range(len(nums) - 1, -1, -1):
-            answer[i] *= rightProduct
+            rightProd[i] = rightProduct
             rightProduct *= nums[i]
-        
-        return answer
+
+        for i in range(len(nums)):
+            ans[i] = leftProd[i] * rightProd[i]
+
+        return ans
     
 
 newSolution = Solution()
-print(newSolution.productExceptSelf([1,1,1,2,2,3,3,3,3,2,5,6,7,1,3,1,2,8,9]))
+print(newSolution.productExceptSelf([1,2,3,4]))
