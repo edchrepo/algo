@@ -37,18 +37,6 @@ class Solution:
         #         if nums[j] == complement:
         #             return [i, j]
 
-        # Solution 2.0 filling up map first:
-        # map1 = {}
-        # for i, n in enumerate(nums):
-        #     map1[n] = i
-        
-        # for i, n in enumerate(nums):
-        #     complement = target - n
-        #     if complement in map1:
-        #         return [map1[complement], i]
-        #     map1[n] = i
-        # return
-
         # Solution 2 (Optimal): Filling up map as you go. This works because even if the first iteration 
         # will never return, it works because you are looking for two numbers. You'll eventually see the
         # pair that is the answer.
