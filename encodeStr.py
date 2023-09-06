@@ -19,14 +19,14 @@ class Solution:
         res = []
         i = 0
         
-        while i < len(s):
+        while i < len(str):
             j = i
-            while s[j] != '#':
+            while str[j] != '#':
                 j += 1
-            length = int(s[i:j])
+            length = int(str[i:j])
             i = j + 1
             j = i + length
-            res.append(s[i:j])
+            res.append(str[i:j])
             i = j
             
         return res
