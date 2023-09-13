@@ -21,9 +21,18 @@
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        newString = ''.join([char for char in s if char.isalnum()]).lower()
+        # Method 1 of joining string (intuitive) string builder
+        newString = ""
 
-        # Solution 0: reverse method
+        for c in s:
+            if c.isalnum():
+                newString += c.lower()
+
+        # Method 2 shortkey
+        # newString = ''.join([char for char in s if char.isalnum()]).lower()
+
+
+        # Solution 0 for Method 1/2: reverse method
         # return newString[::-1] == newString
 
         # Solution 1 O(n): loop halfway and check start and end indices to see if they match, keep incrementing after
