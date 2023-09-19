@@ -54,6 +54,16 @@ class Solution:
             l += 1
             r -= 1
         return True
+    
+    # Solution 2 Without alphanum:
+        # left, right = 0, len(newString) - 1
+        # while left < right:
+        #     if newString[left] != newString[right]:
+        #         return False
+        #     left += 1
+        #     right -= 1
+
+        # return True
 
     # Could write own alpha-numeric function
     def alphanum(self, c):
