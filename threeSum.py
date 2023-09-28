@@ -29,37 +29,19 @@ class Solution:
     
         # return [list(triplet) for triplet in results]
         
-        # Solution 2 (optimal):
-        # res = []
-        # nums.sort()
-
-        # for i, a in enumerate(nums):
-        #     # Skip positive integers
-        #     if a > 0:
-        #         break
-
-        #     if i > 0 and a == nums[i - 1]:
-        #         continue
-
-        #     l, r = i + 1, len(nums) - 1
-        #     while l < r:
-        #         threeSum = a + nums[l] + nums[r]
-        #         if threeSum > 0:
-        #             r -= 1
-        #         elif threeSum < 0:
-        #             l += 1
-        #         else:
-        #             res.append([a, nums[l], nums[r]])
-        #             l += 1
-        #             r -= 1
-        #             while nums[l] == nums[l - 1] and l < r:
-        #                 l += 1
-                        
-        # return res
+        # Solution 2 (optimal) (O(n^2)):
         res = []
         nums.sort()
 
         for i, a in enumerate(nums):
+            # Skip positive integers
+            if a > 0:
+                break
+
+            # Avoid duplicate a + b + c = 0, a can't be the same as before 
+            if i > 0 and a == nums[i - 1]:
+                continue
+
             l, r = i + 1, len(nums) - 1
             while l < r:
                 threeSum = a + nums[l] + nums[r]
@@ -69,12 +51,22 @@ class Solution:
                     l += 1
                 else:
                     res.append([a, nums[l], nums[r]])
-                    break
+                    l += 1
+                    # We keep going from left to right because:
+                    # [-4, -2, -1, 5, 6] <-- first solution [-4, -2, 6]
+                    # but you can't iterate to -2 after appending. The next sol is [-4,-1,5]
+
+                    # However, we CAN skip if its equal to prev:
+                    # ex: [-4,-2,-2,-1,5,6] <-- after [-4,-2,6] skip to -1 instead of 2nd -2
+                    # to avoid duplicates
+                    while nums[l] == nums[l - 1] and l < r:
+                        l += 1
                         
         return res
         
 
 newSolution = Solution()
 #[-4,-1,-1,0,1,2]
-print(newSolution.threeSum([-1,0,1,2,-1,-4]))
+#[-4,-1,-1,-1,0,0,1,1,2,]
+print(newSolution.threeSum([-1,0,1,2,-1,-1,0,1,-4]))
  
