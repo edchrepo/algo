@@ -12,7 +12,7 @@ class Solution:
             elif curSum < target:
                 l += 1
             else:
-                return [l + 1, r + 1]
+                return [l, r]
             
 
 
