@@ -62,6 +62,24 @@ class Solution:
                     while nums[l] == nums[l - 1] and l < r:
                         l += 1
                         
+            # Solution 3: same as two but with set
+            # res = set()
+            # nums.sort()
+
+            # for i, n in enumerate(nums):
+            #     l, r = i + 1, len(nums) - 1
+            #     if i > 0 and nums[i] == nums[i-1]:
+            #         continue
+            #     while l < r:
+            #         threeSum = n + nums[l] + nums[r]
+            #         if threeSum > 0:
+            #             r-=1
+            #         elif threeSum < 0:
+            #             l+=1
+            #         else:
+            #             res.add(tuple(sorted([n, nums[l], nums[r]])))
+            #             l+=1
+            # return [list(triplet) for triplet in res]
         return res
         
 
