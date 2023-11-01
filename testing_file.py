@@ -1,23 +1,44 @@
-# Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
-# Notice that the solution set must not contain duplicate triplets.
+# An input string is valid if:
+
+# Open brackets must be closed by the same type of brackets.
+# Open brackets must be closed in the correct order.
+# Every close bracket has a corresponding open bracket of the same type.
+ 
 
 # Example 1:
 
-# Input: nums = [-1,0,1,2,-1,-4]
-# Output: [[-1,-1,2],[-1,0,1]]
-# Explanation: 
-# nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
-# nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
-# nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
-# The distinct triplets are [-1,0,1] and [-1,-1,2].
-# Notice that the order of the output and the order of the triplets does not matter.
+# Input: s = "()"
+# Output: true
+# Example 2:
+
+# Input: s = "()[]{}"
+# Output: true
+# Example 3:
+
+# Input: s = "(]"
+# Output: false
+ 
 
 from typing import List 
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        closeToOpen = { "}":"{", ")":"(", "]":"["}
+
+        for c in s:
+            if c in closeToOpen:
+                if not stack or stack[-1] != closeToOpen[c]:
+                    return False
+                else:
+                    stack.pop()
+            else:
+                stack.append(c)
+
+        return True if not stack else False
 
 
 newSolution = Solution()
-print(newSolution.threeSum([-1,0,1,2,-1,-4]))
+print(newSolution.isValid("()[]{}"))
