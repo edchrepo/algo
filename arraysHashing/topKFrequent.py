@@ -50,13 +50,13 @@ class Solution:
         for n in nums:
             map1[n] = map1.get(n, 0) + 1
 
-        # sortedMap first becomes array of tuples -> [(1,3), (2,2), (3,1)] 
-        # dict cast makes it a dict -> {1:3, 2:2, 3:1}
-        # sortedMap.items() -> back to array of tuples -> [(1,3), (2,2), (3,1)] 
-        sortedMap = dict(sorted(map1.items(), key=lambda x: x[1], reverse=True))
-
+        # sorted first becomes array of tuples -> [(1,3), (2,2), (3,1)] 
+        # sortedDict -> dict cast makes it a dict -> {1:3, 2:2, 3:1}
+        # sortedDict.items() -> back to array of tuples -> [(1,3), (2,2), (3,1)] 
+        # sortedDict = dict(sorted(map1.items(), key=lambda x: x[1], reverse=True))
+        sortedDict = sorted(map1.items(), key=lambda x: x[1], reverse=True)
         ans = []
-        for key, val in sortedMap.items():
+        for key, val in sortedDict:
             if len(ans) < k:
                 ans.append(key)
 

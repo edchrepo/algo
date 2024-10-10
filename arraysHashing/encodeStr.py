@@ -30,9 +30,9 @@ class Solution:
             j = i
             while str[j] != '#':
                 j += 1
-            length = int(str[i:j])
-            i = j + 1
-            j = i + length
+            length = int(str[i:j]) # grab the number (str(len(s))) 
+            i = j + 1 # skip the #
+            j = i + length # end of index of actual string
             res.append(str[i:j])
             i = j
             

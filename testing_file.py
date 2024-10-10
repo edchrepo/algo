@@ -8,15 +8,14 @@
  
 
 # Example 1:
-
 # Input: s = "()"
 # Output: true
-# Example 2:
 
+# Example 2:
 # Input: s = "()[]{}"
 # Output: true
-# Example 3:
 
+# Example 3:
 # Input: s = "(]"
 # Output: false
  
@@ -25,20 +24,8 @@ from typing import List
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        closeToOpen = { "}":"{", ")":"(", "]":"["}
-
-        for c in s:
-            if c in closeToOpen:
-                if not stack or stack[-1] != closeToOpen[c]:
-                    return False
-                else:
-                    stack.pop()
-            else:
-                stack.append(c)
-
-        return True if not stack else False
+        return
 
 
 newSolution = Solution()
-print(newSolution.isValid("()[]{}"))
+print(newSolution.isValid("({]]{)})"))

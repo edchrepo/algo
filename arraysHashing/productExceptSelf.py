@@ -46,8 +46,8 @@ class Solution:
     
         # Solution (just the intuition, not optimal):
         # [1, 2, 3, 4]
-        # [1, 1, 2, 6]
-        # [24, 12, 4, 1]
+        # [1, 1, 2, 6] left prod
+        # [24, 12, 4, 1] right prod
         
         # [1 * 24, 1 * 12, 2 * 4 , 6 * 1]
         # ans = [1] * len(nums) 
