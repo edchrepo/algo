@@ -40,23 +40,47 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-const groupAnagrams = (strs) => {
-    const map = {};  // Hash map to store grouped anagrams
+// const groupAnagrams = (strs) => {
+//     const map = {};  // Hash map to store grouped anagrams
     
-    for (let str of strs) {
-        // Sort the string and use it as the key
-        let sortedStr = str.split('').sort().join('');
+//     for (let str of strs) {
+//         // Sort the string and use it as the key
+//         let sortedStr = str.split('').sort().join('');
         
-        // If the sorted string is already a key in the map, add the original string to the list
-        if (map[sortedStr]) {
-            map[sortedStr].push(str);
-        } else {
-            // Otherwise, create a new entry with the sorted string as the key
-            map[sortedStr] = [str];
-        }
-    }
+//         // If the sorted string is already a key in the map, add the original string to the list
+//         if (map[sortedStr]) {
+//             map[sortedStr].push(str);
+//         } else {
+//             // Otherwise, create a new entry with the sorted string as the key
+//             map[sortedStr] = [str];
+//         }
+//     }
     
-    // Return the values of the map (arrays of grouped anagrams)
+//     // Return the values of the map (arrays of grouped anagrams)
+//     return Object.values(map);
+// };
+
+const groupAnagrams = (strs) => {
+    const map = {}; // Use an object to store grouped anagrams
+
+    for (let str of strs) {
+        // Create a frequency array for the current string
+        const freq = new Array(26).fill(0);
+        for (let char of str) {
+            freq[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+        }
+
+        // Use the frequency array as a key (convert it to a string)
+        const key = freq.join(',');
+
+        // Add the string to the corresponding group
+        if (!map[key]) {
+            map[key] = [];
+        }
+        map[key].push(str);
+    }
+
+    // Return all grouped anagrams
     return Object.values(map);
 };
 
