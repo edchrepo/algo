@@ -28,7 +28,7 @@
  * @param {string} t
  * @return {boolean}
  */
-var isAnagram = function(s, t) {
+const isAnagram = (s, t) =>{
     // If lengths are different, they can't be anagrams
     if (s.length !== t.length) {
         return false;
