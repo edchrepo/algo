@@ -27,32 +27,51 @@
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function(nums, k) {
-    const frequencyMap = new Map();
+// var topKFrequent = function(nums, k) {
+//     const frequencyMap = new Map();
     
-    // Step 1: Count frequencies of each element
-    for (let num of nums) {
-        frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+//     // Step 1: Count frequencies of each element
+//     for (let num of nums) {
+//         frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+//     }
+
+//     // Step 2: Initialize the bucket array
+//     const bucket = Array(nums.length + 1).fill().map(() => []);
+
+//     // Step 3: Populate the bucket array
+//     for (let [num, freq] of frequencyMap) {
+//         bucket[freq].push(num);
+//     }
+
+//     // Step 4: Collect the top k frequent elements
+//     const result = [];
+//     for (let i = bucket.length - 1; i >= 0 && result.length < k; i--) {
+//         if (bucket[i].length > 0) {
+//             result.push(...bucket[i]);
+//         }
+//     }
+
+//     return result.slice(0, k);
+// };
+
+var topKFrequent = function(nums, k) {
+    // Step 1: Count frequencies
+    const freqMap = new Map();
+    for (const num of nums) {
+        freqMap.set(num, (freqMap.get(num) || 0) + 1);
     }
 
-    // Step 2: Initialize the bucket array
-    const bucket = Array(nums.length + 1).fill().map(() => []);
+    // Step 2: Sort the frequency map by values (frequencies) in descending order
+    const sortedFreq = [...freqMap.entries()].sort((a, b) => b[1] - a[1]);
 
-    // Step 3: Populate the bucket array
-    for (let [num, freq] of frequencyMap) {
-        bucket[freq].push(num);
-    }
-
-    // Step 4: Collect the top k frequent elements
-    const result = [];
-    for (let i = bucket.length - 1; i >= 0 && result.length < k; i--) {
-        if (bucket[i].length > 0) {
-            result.push(...bucket[i]);
-        }
-    }
-
-    return result.slice(0, k);
+    // Step 3: Extract the top k elements
+    return sortedFreq.slice(0, k).map(([num, _]) => num);
 };
+
+// Example usage
+console.log(topKFrequent([1,1,1,2,2,3], 2)); // Output: [1, 2]
+console.log(topKFrequent([1], 1));           // Output: [1]
+
 
 // Test cases
 console.log(topKFrequent([1,1,1,2,2,3], 2)); // Expected output: [1,2]
